@@ -72,7 +72,7 @@ bugs across 4 files, then verifies; temperature 0.8; one fixed working directory
 In short: TensorFold decodes faster, by 30% for one prose request and up to 40% at four; SGLang prefills about 60%
 faster, because its NVFP4 prompt path runs FP4 matmuls while TensorFold 1.2.9 runs NVFP4 prompts in BF16. Agent
 traffic is prefill-heavy (each turn resends its history; about 85% of it comes from cache here), so on the agent task
-SGLang still finishes about 22% sooner. For chat, single-user coding and long generations this recipe is the faster
+SGLang still finishes about 18% sooner (this recipe takes 22% longer). For chat, single-user coding and long generations this recipe is the faster
 one; for many short agent turns, SGLang is.
 
 ## What was tested
