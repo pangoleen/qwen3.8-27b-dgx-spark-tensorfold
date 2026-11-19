@@ -1,5 +1,10 @@
 # Qwen3.8-27B on one DGX Spark: TensorFold native
 
+By Paolo Rosson, [@redp314 on X](https://x.com/redp314), where the results and follow-ups are posted first.
+The SGLang recipe these numbers are compared with: [qwen3.8-27b-dgx-spark-dflash2](https://github.com/pangoleen/qwen3.8-27b-dgx-spark-dflash2).
+
+![TensorFold vs SGLang on one DGX Spark](charts/tf-vs-sglang.png)
+
 Serve **Qwen3.8-27B** on a single NVIDIA DGX Spark (GB10, 128 GB) through an OpenAI-compatible API with
 [TensorFold](https://github.com/ashhart/TensorFold)'s native engine, **v1.2.9**: RadixArk's NVFP4 weights, incoai's
 DFlash2 drafter, an FP8 KV cache (8 requests at once at the full 262,144-token window) and prefix reuse at message
@@ -7,7 +12,7 @@ starts. Every setting below was measured on one Spark against the alternatives l
 [What was tested](#what-was-tested).
 
 ```bash
-git clone <this repo> && cd Qwen3.8-27B-DGX-Spark-TensorFold-Native
+git clone https://github.com/pangoleen/qwen3.8-27b-dgx-spark-tensorfold && cd qwen3.8-27b-dgx-spark-tensorfold
 ./start.sh          # installs TensorFold 1.2.9 and the pinned weights on first run, then serves
 ./stop.sh
 ```
@@ -102,6 +107,9 @@ Each line changed one thing from the line above or from the recipe; agent-task m
   complex schema, and the model occasionally loops on it.
 
 ## How it was measured
+
+The rows behind every chart and table are in [data/tf-vs-sglang.csv](data/tf-vs-sglang.csv); `python charts/make_charts.py` redraws the chart and the table image.
+
 
 Speed: sparkDash's own `DecodeBench` and `PrefillBench` collectors (temperature 0), and `ctxsweep.py` (prompts
 calibrated to the server's tokenizer, a unique first line per run so nothing is cached). Agent task: pi through a

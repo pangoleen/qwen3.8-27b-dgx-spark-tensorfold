@@ -1,0 +1,13 @@
+group,metric,unit,better,tensorfold,sglang,conditions
+decode,"Prose, 1 chat",tok/s,higher,52.7,40.8,"sparkDash DecodeBench, 400 tokens, temperature 0, thinking off"
+decode,"Prose, 4 at once (total)",tok/s,higher,146.7,105.1,"sparkDash DecodeBench, 400 tokens each"
+decode,"Code, 1 chat",tok/s,higher,128.8,123.1,"sparkDash DecodeBench, 400 tokens"
+decode,"Code, 4 at once (total)",tok/s,higher,367.8,387.7,"sparkDash DecodeBench, 400 tokens each"
+longdecode,"After a 4k prompt",tok/s,higher,82.4,62.3,"ctxsweep, summarize task, 256 tokens, 2 reps"
+longdecode,"After a 16k prompt",tok/s,higher,82.4,69.2,"ctxsweep"
+longdecode,"After a 32k prompt",tok/s,higher,76.7,72.1,"ctxsweep"
+prefill,"8k prompt",tok/s,higher,1380,2206,"sparkDash PrefillBench, cold"
+prefill,"16k prompt",tok/s,higher,1348,2240,"sparkDash PrefillBench"
+prefill,"32k prompt",tok/s,higher,1250,2119,"sparkDash PrefillBench"
+prefill,"64k prompt",tok/s,higher,1086,1770,"sparkDash PrefillBench"
+agent,"Median of 6 runs",s,lower,75.2,61.4,"pi fan-out: main agent + 4 sub-agents, 8 checks, temperature 0.8, one fixed working directory, warm-up not counted; 6/6 pass on both"
